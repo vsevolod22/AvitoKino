@@ -17,7 +17,8 @@ set REACT_APP_TOKEN=WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M && npm start
 ![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/5c20b0a5-099d-4f73-bafb-3e2fcca52d33)
 
 
- ## Получение нужного количества фильмов по нужным полям
+ ## Получение нужного количества фильмов по нужным полям\
+```js
 GetByAllFilters = async (page, limit, id, name, description, shortDescription, type, status, year, rating, ageRating, votes, budget, poster, Country=false, Age=false, Genres=false, Year=false, logo, alternativeName, isSeries, releaseYears, audience, movieLength, seriesLength, totalSeriesLength, genres, countries, backdrop, ticketsOnSale, videos, networks, persons, fees, similarMovies, lists, top10, top250, updatedAt, createdAt) => {
 
     let innerUrl = this.APIURL + `/movie?page=${page}&limit=${limit}`;
@@ -92,7 +93,9 @@ GetByAllFilters = async (page, limit, id, name, description, shortDescription, t
     console.error(error);
  }
   }
+```
 ## ответ при запросе с определёнными полями
+```js
 const fetchFilms = async (page, limit, country, age, genres, year) => {
         setLoading(true);
         const response = await httpApiMethods.GetByAllFilters(page, limit, true, true, true, false, true, false, false, true, false, false, false, true, country, age, genres, year);
@@ -111,6 +114,7 @@ const fetchFilms = async (page, limit, country, age, genres, year) => {
         
     }, [page, limit, country, age, genres, year, searchFilm]);
 ![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/dcdee4c1-1c9d-4600-9ee2-b519d9444112)
+```
 
 ## Получение постеров
 ![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/a4754ac6-7b27-438e-b84d-87f473ed3eba)
@@ -124,6 +128,7 @@ const fetchFilms = async (page, limit, country, age, genres, year) => {
 ![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/5d58dfa9-15fa-409d-ae13-afdbc095dba4)
 
 ## Получение информации о сезонах 
+```js
   GetInfoAboutSesons = async (id) => {
     let innerUrl = this.APIURL + `/season?page=${1}&limit=${50}&selectFields=poster&selectFields=number&selectFields=name&selectFields=duration&selectFields=description&selectFields=episodesCount&selectFields=episodes&movieId=${id}`;
    
@@ -144,7 +149,7 @@ const fetchFilms = async (page, limit, country, age, genres, year) => {
     }
   }
 
-
+```
 ## Ответ
 ![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/b461ed4b-b5b0-4a43-8167-6cc3d5e399df)
 ### При нажатии на выбранный сезон с него достаются эпизоды без повторных запросов
