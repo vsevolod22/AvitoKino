@@ -113,8 +113,9 @@ const fetchFilms = async (page, limit, country, age, genres, year) => {
         
         
     }, [page, limit, country, age, genres, year, searchFilm]);
-![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/dcdee4c1-1c9d-4600-9ee2-b519d9444112)
 ```
+![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/dcdee4c1-1c9d-4600-9ee2-b519d9444112)
+
 
 ## Получение постеров
 ![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/a4754ac6-7b27-438e-b84d-87f473ed3eba)
