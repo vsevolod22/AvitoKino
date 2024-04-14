@@ -1,0 +1,304 @@
+.event_card {
+    width: 292px;
+    height: 626px;
+    flex-shrink: 0;
+    margin-top: 100px;
+    &:hover {
+        cursor: pointer;
+    }
+    &_series {
+        width: 330px;
+        height: 326px;
+        flex-shrink: 0;
+        margin-top: 100px;
+        margin: 0 20px;
+    }
+    &_trailer {
+        width: 580px;
+        height: 626px;
+        flex-shrink: 0;
+        margin-top: 100px;
+    }
+    &_poster {
+        width: 292px;
+        height: 626px;
+        flex-shrink: 0;
+        margin-top: 100px;
+    }
+   
+}
+
+
+.wrapp {
+    display: flex;
+    justify-content: flex-start;
+    /* max-width: 1521px; */
+}
+
+:root {
+    text-align: left;
+}
+
+.event-card_date {
+    color: var(--gray_text, #888);
+
+/* title */
+font-family: Montserrat;
+font-size: 22px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+.event-card__photo {
+    width: 292px;
+    height: 340px;
+    flex-shrink: 0;
+
+    margin-bottom: 26px;
+    &_trailer {
+        width: 292px;
+        height: 340px;
+        flex-shrink: 0;
+
+        margin-bottom: 26px;
+    }
+}
+
+.event-card_title {
+    color: #000;
+
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.feautures {
+    
+display: flex;
+justify-content: center;
+font-family: Montserrat;
+align-items: center;
+font-size: 8px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+border-radius: 10px;
+background: #E7FFD2;
+height: 15px;
+padding: 10px;
+}
+
+.tagged {
+    display: inline-flex;
+padding: 10px;
+justify-content: center;
+align-items: center;
+gap: 10px;
+border-radius: 10px;
+border: 1px solid var(--gray_text, #888);
+}
+.taggs {
+    display: flex;
+    justify-content: space-between;
+}
+.img_series {
+    width: 330px;
+    height: auto;
+}
+.img_trailer {
+    width: 580px;
+    height: 340px;
+}
+.slider {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    &__wrapper {
+       display: flex;
+       width: 92%;
+       height: 100%;
+       transition: transform 0.5s ease-in-out;
+       justify-content: space-around;
+       flex-wrap: wrap;
+    }
+   
+    &__slide {
+       flex: 0 0 auto;
+       width: 100%;
+       height: 100%;
+       display: flex;
+       flex-direction: column;
+       justify-content: center;
+       align-items: center;
+       opacity: 0;
+       transition: opacity 0.5s ease-in-out;
+   
+       &.active {
+         opacity: 1;
+       }
+    }
+   
+    &__button {
+       position: absolute;
+       top: 50%;
+       transform: translateY(-50%);
+       background: transparent;
+       border: none;
+       font-size: 2rem;
+       color: #000;
+       cursor: pointer;
+       z-index: 10;
+   
+       &--left {
+         left: 10px;
+       }
+   
+       &--right {
+         right: 10px;
+       }
+    }
+   }
+@media (max-width: 769px) {
+    .slider {
+    
+       
+        &__button {
+           &--left {
+             left: -6px;
+           }
+           &--right {
+             right: -5px;
+           }
+        }
+       }
+       .event_card {
+
+        &_trailer {
+            width: 470px;
+        }
+       
+    }
+    .img_trailer {
+        width: 470px;
+        height: 340px;
+    }
+    
+}
+@media (max-width: 576px) {
+    .slider {
+        
+       
+        &__button {
+            top: 40%;
+           &--left {
+             left: -6px;
+           }
+           &--right {
+             right: -5px;
+           }
+        }
+       }
+    .event_card {
+
+        &_trailer {
+            width: 310px;
+        }
+       
+    }
+    .img_trailer {
+        width: 310px;
+        height: 300px;
+    }
+   
+}
+@media (max-width:426px) {
+    .slider {
+        
+       
+        &__button {
+            top: 40%;
+           &--left {
+             left: -6px;
+           }
+           &--right {
+             right: -5px;
+           }
+        }
+       }
+    .event_card {
+
+        &_trailer {
+            width: 270px;
+        }
+       
+    }
+    .img_trailer {
+        width: 270px;
+        height: 300px;
+    }
+    .event_card {
+        width: 210px;
+        &_poster {
+            width: 210px;
+        }
+    }
+    .img {
+        width: 220px;
+        height: 300px;
+    }
+    .someMeetings  {
+       
+    }
+}
+@media (max-width:376px) {
+    .slider {
+        
+       
+        &__button {
+            top: 40%;
+           &--left {
+             left: -6px;
+           }
+           &--right {
+             right: -5px;
+           }
+        }
+       }
+    .event_card {
+
+        &_trailer {
+            width: 230px;
+        }
+        &_series {
+            width: 230px;
+        }
+        
+       
+    }
+    .img_trailer {
+        width: 230px;
+        height: 300px;
+    }
+    .img_series {
+        width: 230px;
+        height: 170px;
+    }
+    .event_card {
+        width: 210px;
+        &_poster {
+            width: 210px;
+        }
+    }
+    .event-card__photo {
+        width: 210px;
+    }
+    .img {
+        width: 220px;
+        height: 300px;
+    }
+}
