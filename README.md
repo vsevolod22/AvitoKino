@@ -1,4 +1,12 @@
-# Getting Started with Create React App
+# Чтобы запустить проект вместе с токеном необходимо ввести команду
+
+
+set REACT_APP_TOKEN=WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M && npm start
+
+
+
+
+# Можно переходить по фильмам, использовать фильтры, которые не сбрасываются и отображаются в ссылке, для того чтобы с информации о фильме\сериале перейти назад, необходимо нажать на слово муза в хедере
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
