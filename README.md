@@ -2,7 +2,7 @@
 
 
 set REACT_APP_TOKEN=WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M && npm start
-![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/8b6b42f6-34a2-4457-aa93-02cab8df7647)
+
 
 
 
@@ -11,6 +11,143 @@ set REACT_APP_TOKEN=WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M && npm start
 Можно переходить по фильмам, использовать фильтры, которые не сбрасываются и отображаются в ссылке, для того чтобы с информации о фильме\сериале перейти назад, необходимо нажать на слово муза в хедере
 
 # Запросы к серверу
+## Запрос на получение фильма по id
+![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/9074f333-2ff1-4b45-b95b-47b35696c057)
+## ответ
+![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/5c20b0a5-099d-4f73-bafb-3e2fcca52d33)
+
+
+ ## Получение нужного количества фильмов по нужным полям
+GetByAllFilters = async (page, limit, id, name, description, shortDescription, type, status, year, rating, ageRating, votes, budget, poster, Country=false, Age=false, Genres=false, Year=false, logo, alternativeName, isSeries, releaseYears, audience, movieLength, seriesLength, totalSeriesLength, genres, countries, backdrop, ticketsOnSale, videos, networks, persons, fees, similarMovies, lists, top10, top250, updatedAt, createdAt) => {
+
+    let innerUrl = this.APIURL + `/movie?page=${page}&limit=${limit}`;
+   
+     // Функция для добавления параметра в URL, если он предоставлен
+     const addParam = (paramName, value) => {
+      if (value) innerUrl += `&selectFields=${paramName}`;
+  };
+
+  // Добавляем каждый параметр в URL, если он предоставлен
+  addParam('id', id);
+  addParam('name', name);
+  addParam('description', description);
+  addParam('shortDescription', shortDescription);
+  addParam('type', type);
+  addParam('status', status);
+  addParam('year', year);
+  addParam('rating', rating);
+  addParam('ageRating', ageRating);
+  addParam('votes', votes);
+  addParam('budget', budget);
+  addParam('poster', poster);
+  addParam('logo', logo);
+  addParam('alternativeName', alternativeName);
+  addParam('isSeries', isSeries);
+  addParam('releaseYears', releaseYears);
+  addParam('audience', audience);
+  addParam('movieLength', movieLength);
+  addParam('seriesLength', seriesLength);
+  addParam('totalSeriesLength', totalSeriesLength);
+  addParam('genres', genres);
+  addParam('countries', countries);
+  addParam('backdrop', backdrop);
+  addParam('ticketsOnSale', ticketsOnSale);
+  addParam('videos', videos);
+  addParam('networks', networks);
+  addParam('persons', persons);
+  addParam('fees', fees);
+  addParam('similarMovies', similarMovies);
+  addParam('lists', lists);
+  addParam('top10', top10);
+  addParam('top250', top250);
+  addParam('updatedAt', updatedAt);
+  addParam('createdAt', createdAt);
+  if (Country) {
+    const country = encodeURIComponent(Country)
+    innerUrl += `&countries.name=${country}`
+  }
+  if (Age >= 0 && Age !== false) {
+    console.log(Age)
+    innerUrl += `&ageRating=${Age}`
+  }
+  if (Genres) {
+    const genres = encodeURIComponent(Genres)
+    innerUrl += `&genres.name=${genres}`
+  }
+  if (Year) {
+    
+    innerUrl += `&year=${Year}`
+
+  }
+  console.log(innerUrl)
+  try {
+    const response = await axios.get(innerUrl, {
+      headers: {
+        'X-API-KEY': this.API_KEY
+      }
+    });
+    // console.log(response.data);
+    return response.data; // Возвращаем данные из ответа
+ } catch (error) {
+    console.error(error);
+ }
+  }
+## ответ при запросе с определёнными полями
+const fetchFilms = async (page, limit, country, age, genres, year) => {
+        setLoading(true);
+        const response = await httpApiMethods.GetByAllFilters(page, limit, true, true, true, false, true, false, false, true, false, false, false, true, country, age, genres, year);
+        setFilms(response);
+        setTotalPages(response.pages); // Расчет общего количества страниц
+        setLoading(false);
+    };
+    
+    
+    // Использование useEffect для загрузки данных при монтировании и при изменении страницы, лимита и тд
+    useEffect(() => {
+        if (searchFilm === false ) {
+            fetchFilms(page, limit, country, age, genres, year);
+        }
+        
+        
+    }, [page, limit, country, age, genres, year, searchFilm]);
+![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/dcdee4c1-1c9d-4600-9ee2-b519d9444112)
+
+## Получение постеров
+![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/a4754ac6-7b27-438e-b84d-87f473ed3eba)
+## В результате приходит нужное количество постеров, которые далее фильтруются по размерам
+![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/086e7368-5188-4eba-a7cb-1429035d7cf6)
+
+## Запрос на получание коментариев (отзывов)
+![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/e0b73c4a-4438-4bf3-b3d7-6ea9a0675644)
+
+## Ответ
+![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/5d58dfa9-15fa-409d-ae13-afdbc095dba4)
+
+## Получение информации о сезонах 
+  GetInfoAboutSesons = async (id) => {
+    let innerUrl = this.APIURL + `/season?page=${1}&limit=${50}&selectFields=poster&selectFields=number&selectFields=name&selectFields=duration&selectFields=description&selectFields=episodesCount&selectFields=episodes&movieId=${id}`;
+   
+    // Функция для добавления параметра в URL, если он предоставлен
+   
+
+
+    try {
+      const response = await axios.get(innerUrl, {
+        headers: {
+          'X-API-KEY': this.API_KEY
+        }
+      });
+      // console.log(response.data);
+      return response.data; // Возвращаем данные из ответа
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+
+## Ответ
+![image](https://github.com/vsevolod22/AvitoKino/assets/96574851/b461ed4b-b5b0-4a43-8167-6cc3d5e399df)
+### При нажатии на выбранный сезон с него достаются эпизоды без повторных запросов
 
 ## Available Scripts
 
