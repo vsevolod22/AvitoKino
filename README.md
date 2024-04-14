@@ -1,7 +1,7 @@
 # Чтобы запустить проект вместе с токеном необходимо ввести команду
 
 
-set REACT_APP_TOKEN=WF76VQQ-HQB4P5G-JFJH8DF-CRKDP1M && npm start
+set REACT_APP_TOKEN=yourTocken && npm start
 
 
 
